@@ -57,7 +57,7 @@ export default function RoomPage() {
   }, [])
   
   useEffect(() => {
-    const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || `http://${window.location.hostname}:3001`
+    const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || process.env.next_public_socket_url || `http://${window.location.hostname}:3001`
     const newSocket = io(socketUrl, {
       autoConnect: true,
       reconnection: true,
@@ -91,13 +91,13 @@ export default function RoomPage() {
 
     newSocket.on('move-made', (moveData: { fen: string, currentPlayer: 'white' | 'black' }) => {
       try {
-        const newGame = new Chess(moveData.fen)
-        setGame(newGame)
-        setGameState(prev => ({
-          ...prev,
-          fen: moveData.fen,
-          currentPlayer: moveData.currentPlayer
-        }))
+      const newGame = new Chess(moveData.fen)
+      setGame(newGame)
+      setGameState(prev => ({
+        ...prev,
+        fen: moveData.fen,
+        currentPlayer: moveData.currentPlayer
+      }))
       } catch (error) {
         console.error('Invalid FEN received:', error)
       }
