@@ -1,0 +1,987 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: white;
+  color: #333;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Placeholder rengi */
+.game-input::placeholder {
+  color: #CFCFCF !important;
+}
+
+/* Ana Sayfa Stilleri */
+.homepage-container {
+  background-image: url('/assets/images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.homepage-content {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0px;
+  flex-shrink: 0;
+}
+
+.logo-image {
+  width: 70%;
+}
+
+.chess-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-family: 'Italianno', serif;
+  font-size: 72px;
+  color: white;
+  line-height: 1;
+  margin-top: -28px;
+}
+
+.form-area {
+  margin-top: 72px;
+}
+
+.game-input {
+  width: 100%;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  border: 1px solid #FFF;
+  background: rgba(0, 0, 0, 0.28);
+  font-size: 24px;
+  font-family: 'Geist Mono', monospace;
+  font-weight: normal;
+  color: white;
+  outline: none;
+}
+
+.game-button {
+  width: 100%;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  background: #F00;
+  background-blend-mode: exclusion;
+  border: none;
+  font-size: 24px;
+  color: white;
+  font-family: 'Geist Mono', monospace;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.or-text {
+  margin: 20px 0;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.form-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer {
+  margin-top: 40px;
+  color: white;
+  font-size: 14px;
+  text-align: left;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.footer a {
+  color: white;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.footer a:hover {
+  color: #F00;
+  transition: color 0.3s ease;
+}
+
+/* Oyun Sayfası Stilleri */
+.game-container {
+  background-image: url('/assets/images/gamescreenbg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.chess-board-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  max-width: 60%;
+  height: 100%;
+}
+
+.chess-board-wrapper {
+  background-color: white;
+  padding: 36px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: fit-content;
+  height: fit-content;
+}
+
+.game-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+  color: white;
+  gap: 20px;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.game-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.game-logo img {
+  height: 42px;
+}
+
+.game-logo hr {
+  border: none;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 10px 0;
+  width: 100%;
+}
+
+.game-logo-text {
+  font-family: 'Geist Mono', monospace;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.game-logo-text a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.game-logo-text a:hover {
+  color: white;
+}
+
+.users-section {
+  border: 1px solid #FFF;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.users-section h3 {
+  color: white;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  font-family: 'Geist Mono', monospace;
+}
+
+.user-item {
+  margin: 8px 0;
+  color: white;
+  font-size: 14px;
+  text-align: left;
+  font-family: 'Geist Mono', monospace;
+}
+
+.room-code-section {
+  border: 1px solid #FFF;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.room-code-section > div:first-child {
+  text-align: left;
+  margin-bottom: 5px;
+  font-family: 'Geist Mono', monospace;
+}
+
+.room-code {
+  font-size: 18px;
+  color: #CFCFCF;
+  font-family: 'Geist Mono', monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 18px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 5px 0;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.room-code:hover {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  transform: scale(1.02);
+}
+
+.game-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.current-player {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  border: 1px solid #FFF;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Geist Mono', monospace;
+}
+
+.game-message {
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+}
+
+.game-message h2 {
+  color: #4CAF50;
+}
+
+.game-message h3 {
+  color: #ff6b35;
+}
+
+.game-message p {
+  color: white;
+}
+
+/* Desktop'ta mobile elementleri kontrol et */
+.mobile-top-section {
+  display: block;
+}
+
+/* Quit button visibility */
+.mobile-quit-section {
+  display: none;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.desktop-quit-button {
+  display: block;
+}
+
+.mobile-quit-button {
+  display: none;
+}
+
+/* Promotional text visibility */
+.desktop-promo-text {
+  display: block;
+  font-size: 18px;
+  color: white;
+  font-family: 'Geist Mono', monospace;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.desktop-promo-text a {
+  color: white;
+  text-decoration: underline;
+}
+
+.mobile-promo-text {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .mobile-top-section {
+    display: block;
+  }
+  
+  .mobile-top-section .users-section,
+  .mobile-top-section .room-code-section {
+    margin-bottom: 20px;
+  }
+  
+  .mobile-quit-section {
+    display: none !important;
+  }
+  
+  .desktop-quit-button {
+    display: block;
+  }
+  
+  .mobile-quit-button {
+    display: none;
+  }
+  
+  .desktop-promo-text {
+    display: block;
+  }
+  
+  .mobile-promo-text {
+    display: none;
+  }
+}
+
+
+
+/* Mobil Responsive */
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    padding: 10px;
+    gap: 16px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .chess-board-section {
+    max-width: 100%;
+    flex: none;
+    height: auto;
+  }
+  
+  .chess-board-wrapper {
+    padding: 20px;
+  }
+  
+  .game-sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+    align-items: flex-start;
+  }
+  
+  .game-logo {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .users-section {
+    flex: 1;
+    min-width: 45%;
+  }
+  
+  .room-code-section {
+    flex: 1;
+    min-width: 45%;
+  }
+  
+  .game-actions {
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 0;
+  }
+  
+  .current-player {
+    font-size: 16px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 5px;
+    gap: 15px;
+  }
+  
+  .chess-board-wrapper {
+    padding: 15px;
+  }
+  
+  .game-sidebar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .users-section,
+  .room-code-section {
+    min-width: 100%;
+  }
+  
+  .game-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 18px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+  background: #f8f9fa;
+  color: #495057;
+  border: 2px solid #dee2e6;
+}
+
+.btn-secondary:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 18px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 18px;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Özel Tasarım Satranç Tahtası */
+.custom-chess-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.chess-decoration-container {
+  width: min(60vh, 500px);
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px 0;
+}
+
+.chess-decoration-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chess-board-container {
+  width: min(60vh, 500px);
+  height: min(60vh, 500px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-chess-board {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-decoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.0);
+  z-index: 0;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.center-decoration img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+
+.chess-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  position: relative;
+}
+
+/* Özel Satranç Kareleri */
+.custom-chess-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(24px, 8vw, 50px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.custom-chess-square.light {
+  background-color: white;
+  background-image: url('/assets/images/white.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.custom-chess-square.dark {
+  background-color: #412413;
+}
+
+/* Özel Satranç Karesi Efektleri */
+.custom-chess-square.selected {
+  background-color: rgba(255, 255, 0, 0.6) !important;
+  box-shadow: inset 0 0 0 4px #ff6b35;
+}
+
+.custom-chess-square.selected::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 75%;
+  background: #ff6b35;
+  border: 2px solid #ff6b35;
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.custom-chess-square.valid-move {
+  box-shadow: inset 0 0 0 3px #4CAF50;
+}
+
+.custom-chess-square.valid-move::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  opacity: 0.8;
+  z-index: 3;
+}
+
+/* Satranç taşları */
+.custom-chess-square {
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-chess-square i {
+  font-size: clamp(16px, 4vw, 32px);
+  position: relative;
+  z-index: 100;
+  pointer-events: none;
+}
+
+
+
+.custom-chess-square::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 75%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.custom-chess-square:not(:empty)::after {
+  opacity: 1;
+}
+
+.custom-chess-square.white-piece::after {
+  background: #000000;
+}
+
+.custom-chess-square.white-piece i {
+  color: white;
+}
+
+.custom-chess-square.black-piece::after {
+  background: #cfcfcf;
+}
+
+.custom-chess-square.black-piece i {
+  color: black;
+}
+
+.custom-chess-square.dark {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.custom-chess-square.light {
+  text-shadow: none !important;
+}
+
+.custom-chess-square:hover {
+  transform: scale(1.02);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Hover efekti yukarıda tanımlandı */
+
+.game-info {
+  text-align: center;
+  margin: 24px 0;
+}
+
+.current-player {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.room-code {
+  font-size: 18px;
+  color: #666;
+  font-family: monospace;
+  background: #f8f9fa;
+  padding: 8px 18px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+/* Responsive Design for Chess Board */
+@media (max-width: 768px) {
+  .chess-decoration-container {
+    width: min(90vw, 380px);
+    margin: 1px 0;
+  }
+  
+  .chess-board-container {
+    width: min(90vw, 380px);
+    height: min(90vw, 380px);
+  }
+  
+  .custom-chess-square {
+    font-size: clamp(16px, 5vw, 32px);
+  }
+  
+  .center-decoration {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+}
+
+@media (max-width: 480px) {
+  .chess-decoration-container {
+    width: min(90vw, 350px);
+    margin: 1px 0;
+  }
+  
+  .chess-board-container {
+    width: min(90vw, 350px);
+    height: min(90vw, 350px);
+  }
+  
+  .custom-chess-square {
+    font-size: clamp(14px, 4vw, 24px);
+  }
+  
+  .center-decoration {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+
+/* Mobil oyun sayfası düzenlemeleri */
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    padding: 10px;
+    gap: 8px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .chess-board-section {
+    max-width: 100%;
+    flex: none;
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .chess-board-wrapper {
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 380px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .game-sidebar {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    order: 1;
+    margin: 0 auto;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .game-logo {
+    order: 1;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .game-logo img {
+    width: auto;
+    height: 40px;
+    margin: 0 auto;
+  }
+  
+  .game-logo hr {
+    width: 200px;
+    margin: 8px auto;
+  }
+  
+  .game-logo-text {
+    font-size: 12px !important;
+    margin-top: 5px;
+  }
+  
+  .mobile-top-section {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    order: 2;
+    max-width: 400px;
+    margin-bottom: 5px;
+  }
+  
+  .users-section {
+    flex: 1;
+    min-width: 0;
+    padding: 8px;
+  }
+  
+  .room-code-section {
+    flex: 1;
+    min-width: 0;
+    padding: 8px;
+  }
+  
+  .users-section h3 {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  
+  .user-item {
+    font-size: 10px;
+    padding: 3px 6px;
+    margin-bottom: 2px;
+  }
+  
+  .room-code-section > div:first-child {
+    font-size: 12px;
+    margin-bottom: 3px;
+  }
+  
+  .room-code {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+  
+  .current-player {
+    font-size: 14px;
+    padding: 8px;
+    order: 3;
+  }
+  
+  .game-actions {
+    order: 4;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  /* Mobil'de quit button control */
+  .mobile-quit-section {
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .desktop-quit-button {
+    display: none !important;
+  }
+  
+  .mobile-quit-button {
+    display: block !important;
+    width: auto;
+    min-width: 120px;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+  
+  .mobile-promo-text {
+    font-size: 12px;
+    color: white;
+    font-family: 'Geist Mono', monospace;
+    text-align: center;
+    max-width: 300px;
+    line-height: 1.4;
+  }
+  
+  .mobile-promo-text a {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  .desktop-promo-text {
+    display: none !important;
+  }
+  
+  .mobile-promo-text {
+    display: block !important;
+  }
+} 
