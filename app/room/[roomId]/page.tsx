@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams, useRouter } from 'next/navigation'
 import { Chess, Square, Color } from 'chess.js'
 import CustomChessBoard from '@/components/design/CustomChessBoard'
-import { io, Socket, Manager } from 'socket.io-client'
+import { io, Socket } from 'socket.io-client'
 
 interface Player {
   id: string
@@ -49,11 +49,30 @@ export default function RoomPage() {
   }, [])
   
   useEffect(() => {
-    // SON ÇARE - FORCED BACKEND URL
-    const manager = new Manager('https://desstar-chess-server.onrender.com', {
-      transports: ['polling']
+    // ChatGPT önerisi - basit socket bağlantısı
+    console.log('🔌 Attempting socket connection to backend...')
+    
+    const newSocket = io('https://desstar-chess-server.onrender.com', {
+      transports: ['polling'],  // Sadece polling
+      autoConnect: true,
+      reconnection: true,
+      timeout: 10000,
+      forceNew: true
     })
-    const newSocket = manager.socket('/')
+
+    // Connection events
+    newSocket.on('connect', () => {
+      console.log('✅ Socket CONNECTED! ID:', newSocket.id)
+    })
+
+    newSocket.on('connect_error', (error) => {
+      console.error('❌ Socket connection error:', error)
+    })
+
+    newSocket.on('disconnect', () => {
+      console.log('🔌 Socket disconnected')
+    })
+
     setSocket(newSocket)
 
     newSocket.emit('join-room', {
