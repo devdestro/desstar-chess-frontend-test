@@ -63,7 +63,15 @@ export default function RoomPage() {
       : `http://${window.location.hostname}:3001`
     
     console.log('Connecting to:', socketUrl)
-    const newSocket = io(socketUrl, {
+    
+    // Production'da ABSOLUTE URL zorla
+    const finalSocketUrl = typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
+      ? 'https://desstar-chess-server.onrender.com'
+      : socketUrl
+    
+    console.log('Final socket URL:', finalSocketUrl)
+    
+    const newSocket = io(finalSocketUrl, {
       transports: ['polling'],
       autoConnect: true,
       reconnection: true,
@@ -71,7 +79,10 @@ export default function RoomPage() {
       reconnectionDelay: 2000,
       forceNew: true,
       upgrade: false,
-      rememberUpgrade: false
+      rememberUpgrade: false,
+      withCredentials: false,  // CORS için
+      extraHeaders: {},
+      timeout: 20000
     })
     setSocket(newSocket)
 
