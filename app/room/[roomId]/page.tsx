@@ -39,50 +39,19 @@ export default function RoomPage() {
   const [selectedSquare, setSelectedSquare] = useState<string | null>(null)
   const [validMoves, setValidMoves] = useState<string[]>([])
   
-  // Keep-alive mechanism for free hosting
+    // Keep-alive - BASIT!
   useEffect(() => {
-    const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
-    if (!isProduction) return
-    
-         const keepAliveInterval = setInterval(async () => {
-       try {
-         await fetch('https://desstar-chess-server.onrender.com/ping')
-         console.log('🏓 Keep-alive ping sent')
-       } catch (error) {
-         console.log('❌ Keep-alive ping failed:', error)
-       }
-     }, 10 * 60 * 1000) // 10 minutes
+    const keepAliveInterval = setInterval(() => {
+      fetch('https://desstar-chess-server.onrender.com/ping').catch(() => {})
+    }, 10 * 60 * 1000)
     
     return () => clearInterval(keepAliveInterval)
   }, [])
   
   useEffect(() => {
-    // Production'da HTTPS backend, development'da localhost
-    const socketUrl = typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
-      ? 'https://desstar-chess-server.onrender.com'  // Direkt HTTPS backend
-      : `http://${window.location.hostname}:3001`
-    
-    console.log('Connecting to:', socketUrl)
-    
-    // Production'da ABSOLUTE URL zorla
-    const finalSocketUrl = typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
-      ? 'https://desstar-chess-server.onrender.com'
-      : socketUrl
-    
-    console.log('Final socket URL:', finalSocketUrl)
-    
-    const newSocket = io(finalSocketUrl, {
-      transports: ['polling'],
-      autoConnect: true,
-      reconnection: true,
-      reconnectionAttempts: 10,
-      reconnectionDelay: 2000,
-      forceNew: true,
-      upgrade: false,
-      rememberUpgrade: false,
-      withCredentials: false,  // CORS için
-      extraHeaders: {},
-      timeout: 20000
+    // HARDCODE - ARTIK YETER!
+    const newSocket = io('https://desstar-chess-server.onrender.com', {
+      transports: ['polling']
     })
     setSocket(newSocket)
 
