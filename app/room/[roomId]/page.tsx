@@ -41,23 +41,28 @@ export default function RoomPage() {
   
   // Keep-alive mechanism for free hosting
   useEffect(() => {
-    const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL
-    if (!socketUrl || socketUrl.includes('localhost')) return
+    const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+    if (!isProduction) return
     
-    const keepAliveInterval = setInterval(async () => {
-      try {
-        await fetch(`${socketUrl}/ping`)
-        console.log('🏓 Keep-alive ping sent')
-      } catch (error) {
-        console.log('❌ Keep-alive ping failed:', error)
-      }
-    }, 10 * 60 * 1000) // 10 minutes
+         const keepAliveInterval = setInterval(async () => {
+       try {
+         await fetch('https://desstar-chess-server.onrender.com/ping')
+         console.log('🏓 Keep-alive ping sent')
+       } catch (error) {
+         console.log('❌ Keep-alive ping failed:', error)
+       }
+     }, 10 * 60 * 1000) // 10 minutes
     
     return () => clearInterval(keepAliveInterval)
   }, [])
   
   useEffect(() => {
-    const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || process.env.next_public_socket_url || `http://${window.location.hostname}:3001`
+    // Production'da backend URL'i, development'da localhost
+    const socketUrl = typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
+      ? 'https://desstar-chess-server.onrender.com'
+      : `http://${window.location.hostname}:3001`
+    
+    console.log('Connecting to:', socketUrl)
     const newSocket = io(socketUrl, {
       autoConnect: true,
       reconnection: true,
