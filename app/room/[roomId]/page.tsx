@@ -64,13 +64,14 @@ export default function RoomPage() {
     
     console.log('Connecting to:', socketUrl)
     const newSocket = io(socketUrl, {
+      transports: ['polling', 'websocket'],
       autoConnect: true,
       reconnection: true,
-      reconnectionAttempts: 5,
-      reconnectionDelay: 1000,
-      transports: ['websocket', 'polling'],
-      secure: true,
-      forceNew: true
+      reconnectionAttempts: 10,
+      reconnectionDelay: 2000,
+      forceNew: true,
+      secure: false,
+      rejectUnauthorized: false
     })
     setSocket(newSocket)
 
