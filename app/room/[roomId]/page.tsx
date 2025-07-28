@@ -46,7 +46,7 @@ export default function RoomPage() {
     
          const keepAliveInterval = setInterval(async () => {
        try {
-         await fetch('/api/socket/ping')  // Proxy üzerinden
+         await fetch('https://desstar-chess-server.onrender.com/ping')
          console.log('🏓 Keep-alive ping sent')
        } catch (error) {
          console.log('❌ Keep-alive ping failed:', error)
@@ -57,20 +57,20 @@ export default function RoomPage() {
   }, [])
   
   useEffect(() => {
-    // Production'da proxy kullan, development'da localhost
+    // Production'da HTTPS backend, development'da localhost
     const socketUrl = typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
-      ? '/api/socket'  // Proxy üzerinden
+      ? 'https://desstar-chess-server.onrender.com'  // Direkt HTTPS backend
       : `http://${window.location.hostname}:3001`
     
     console.log('Connecting to:', socketUrl)
     const newSocket = io(socketUrl, {
-      transports: ['polling'],  // SADECE POLLING
+      transports: ['polling'],
       autoConnect: true,
       reconnection: true,
       reconnectionAttempts: 10,
       reconnectionDelay: 2000,
       forceNew: true,
-      upgrade: false,  // WebSocket upgrade'i engelle
+      upgrade: false,
       rememberUpgrade: false
     })
     setSocket(newSocket)
