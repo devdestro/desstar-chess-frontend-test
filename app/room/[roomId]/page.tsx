@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams, useRouter } from 'next/navigation'
 import { Chess, Square, Color } from 'chess.js'
 import CustomChessBoard from '@/components/design/CustomChessBoard'
-import { io, Socket } from 'socket.io-client'
+import { io, Socket, Manager } from 'socket.io-client'
 
 interface Player {
   id: string
@@ -49,10 +49,11 @@ export default function RoomPage() {
   }, [])
   
   useEffect(() => {
-    // HARDCODE - ARTIK YETER!
-    const newSocket = io('https://desstar-chess-server.onrender.com', {
+    // SON ÇARE - FORCED BACKEND URL
+    const manager = new Manager('https://desstar-chess-server.onrender.com', {
       transports: ['polling']
     })
+    const newSocket = manager.socket('/')
     setSocket(newSocket)
 
     newSocket.emit('join-room', {
