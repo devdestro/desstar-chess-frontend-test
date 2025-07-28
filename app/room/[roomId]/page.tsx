@@ -49,11 +49,11 @@ export default function RoomPage() {
   }, [])
   
   useEffect(() => {
-    // ChatGPT önerisi - basit socket bağlantısı
-    console.log('🔌 Attempting socket connection to backend...')
+    // KESIN ÇÖZÜM - HARDCODE BACKEND
+    console.log('🚀 CONNECTING TO BACKEND: https://desstar-chess-server.onrender.com')
     
     const newSocket = io('https://desstar-chess-server.onrender.com', {
-      transports: ['polling'],  // Sadece polling
+      transports: ['polling'],
       autoConnect: true,
       reconnection: true,
       timeout: 10000,
